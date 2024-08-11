@@ -1,0 +1,213 @@
+/* Root Variables */
+:root {
+  --background-color: #f4f4f4;
+  --app-bg-color: #fff;
+  --primary-color: #5cb85c;
+  --primary-hover-color: #4cae4c;
+  --danger-color: #d9534f;
+  --danger-hover-color: #c9302c;
+  --text-color: #333;
+  --secondary-text-color: #999;
+  --input-border-color: #ccc;
+  --box-shadow-color: rgba(0, 0, 0, 0.1);
+  --hover-box-shadow-color: rgba(0, 0, 0, 0.05);
+  --base-font: 'Trebuchet MS', 'Lucida Sans Unicode', 'Lucida Grande', 'Lucida Sans', Arial, sans-serif;
+  --heading-font: cursive;
+  --transition-speed: 0.3s;
+  --todo-enter: slideIn 0.5s ease forwards;
+  --todo-exit: slideOut 0.5s ease forwards;
+}
+
+.dark {
+  --background-color: #1a1a1a; /* Dark background color */
+  --app-bg-color: #262626; /* Darker app container background */
+  --primary-color: #4caf50; /* Slightly muted green for dark mode */
+  --primary-hover-color: #388e3c; /* Darker green on hover */
+  --danger-color: #e57373; /* Softer red for better visibility */
+  --danger-hover-color: #d32f2f; /* Darker red on hover */
+  --text-color: #151515; /* Light grey text color */
+  --secondary-text-color: #bdbdbd; /* Muted grey for secondary text */
+  --input-border-color: #424242; /* Dark grey for input borders */
+  --box-shadow-color: rgba(0, 0, 0, 0.5); /* Darker shadow */
+  --hover-box-shadow-color: rgba(255, 255, 255, 0.1); /* Light hover shadow */
+}
+
+
+/* Base Styles */
+body {
+  background-color: var(--background-color);
+  font-family: var(--base-font);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  color: var(--text-color);
+  height: 100vh;
+  margin: 0;
+  overflow: hidden;
+}
+
+.app {
+  background: var(--app-bg-color);
+  padding: 20px 30px;
+  border-radius: 8px;
+  box-shadow: 0 4px 8px var(--box-shadow-color);
+  max-width: 500px;
+  width: 100%;
+  text-align: center;
+  animation: fadeIn var(--transition-speed) ease;
+}
+
+h1 {
+  color: var(--secondary-text-color);
+  font-size: 24px;
+  margin-bottom: 20px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  font-family: var(--heading-font);
+}
+
+.theme {
+  border: 1px solid var(--input-border-color);
+  background-color: var(--background-color);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  padding-inline: .5rem;
+  padding-block: .4rem;
+  border-radius: .4rem;
+  color: var(--secondary-text-color);
+  cursor: pointer;
+  height: 2rem;
+  width: 2rem;
+}
+
+/* Todo Form */
+form {
+  display: flex;
+  justify-content: space-between;
+  gap: 1rem;
+  margin-bottom: 20px;
+}
+
+input[type="text"] {
+  width: 75%;
+  padding: 10px;
+  border: 1px solid var(--input-border-color);
+  border-radius: 4px;
+  font-size: 16px;
+  outline-color: var(--text-color);
+}
+
+button {
+  padding: 10px 20px;
+  background-color: var(--primary-color);
+  color: white;
+  border: none;
+  border-radius: 4px;
+  cursor: pointer;
+  transition: background-color var(--transition-speed);
+}
+
+button:hover {
+  background-color: var(--primary-hover-color);
+}
+
+/* Todo List */
+ul {
+  list-style: none;
+  padding: 0;
+}
+
+.todo-item {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  background: #f9f9f9;
+  padding: 10px;
+  margin-bottom: 10px;
+  border-radius: 4px;
+  box-shadow: 0 2px 4px var(--hover-box-shadow-color);
+  transition: background-color var(--transition-speed), transform var(--transition-speed);
+  animation: var(--todo-enter);
+}
+
+.todo-item:hover {
+  background-color: #f1f1f1;
+  transform: translateY(-2px);
+}
+
+.todo-item.completed span {
+  text-decoration: line-through;
+  color: var(--secondary-text-color);
+}
+.todo-item.completed .edit {
+  background-color: var(--input-border-color);
+}
+
+.todo-item span {
+  cursor: pointer;
+  flex: 1;
+  text-align: left;
+  padding-right: 10px;
+}
+
+.todo-item button {
+  color: white;
+  border: none;
+  border-radius: 4px;
+  padding-inline: .8rem;
+  padding-block: .6rem;
+  cursor: pointer;
+  margin-left: 5px;
+  transition: background-color var(--transition-speed);
+}
+
+.todo-item.completed button:first-child {
+  background-color: var(--input-border-color);
+}
+
+.todo-item button:first-child:hover {
+  background-color: var(--primary-hover-color);
+}
+
+.todo-item button:last-child {
+  background-color: var(--danger-color);
+}
+.todo-item button:last-child:hover {
+  background-color: var(--danger-hover-color);
+}
+
+/* Animations */
+@keyframes fadeIn {
+  from {
+      opacity: 0;
+      transform: scale(0.95);
+  }
+  to {
+      opacity: 1;
+      transform: scale(1);
+  }
+}
+
+@keyframes slideIn {
+  from {
+      opacity: 0;
+      transform: translateY(20px);
+  }
+  to {
+      opacity: 1;
+      transform: translateY(0);
+  }
+}
+
+@keyframes slideOut {
+  from {
+      opacity: 1;
+      transform: translateY(0);
+  }
+  to {
+      opacity: 0;
+      transform: translateY(20px);
+  }
+}
